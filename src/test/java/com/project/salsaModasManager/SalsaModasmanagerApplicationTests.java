@@ -1,4 +1,4 @@
-package com.project.salsaModasmanager;
+package com.project.salsaModasManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
