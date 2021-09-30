@@ -1,0 +1,4 @@
+loggin:
+  level:
+    com:
+      project: INFO
