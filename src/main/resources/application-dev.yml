@@ -2,3 +2,12 @@ loggin:
   level:
     com:
       project: DEBUG
+
+app:
+  datasource:
+    main:
+      drive-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:file:./data/exemplo
+      password: password
+      pool-size:
+      username: sa
