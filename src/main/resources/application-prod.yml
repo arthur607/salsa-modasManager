@@ -2,3 +2,21 @@ loggin:
   level:
     com:
       project: INFO
+app:
+  datasource:
+    main:
+      drive-class-name:
+      jdbc-url: jdbc:h2:file:./data/exemplo
+      password: password
+      pool-size:
+      username: sa
+spring:
+  jpa:
+    database-plataform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
