@@ -2,7 +2,6 @@ package com.project.salsaModasManager.model;
 
 import lombok.Getter;
 
-import javax.persistence.*;
 
 @Getter
 public enum Subcategory {
