@@ -1,4 +1,4 @@
-package com.project.salsaModasManager.repository;
+package com.project.salsaModasManager.repository.jpaRepositories;
 
 import com.project.salsaModasManager.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

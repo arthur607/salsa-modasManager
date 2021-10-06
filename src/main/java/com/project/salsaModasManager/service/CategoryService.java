@@ -1,7 +1,7 @@
 package com.project.salsaModasManager.service;
 
 import com.project.salsaModasManager.model.Category;
-import com.project.salsaModasManager.repository.CategoryRepository;
+import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

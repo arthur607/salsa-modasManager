@@ -1,7 +1,7 @@
 package com.project.salsaModasManager.controller;
 
 import com.project.salsaModasManager.model.Category;
-import com.project.salsaModasManager.repository.CategoryRepository;
+import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import com.project.salsaModasManager.service.CategoryService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
