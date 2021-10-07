@@ -1,11 +1,20 @@
 package com.project.salsaModasManager.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-//public interface CrudRepository<T> extends JpaRepository<T,Long> {
-
+import com.project.salsaModasManager.model.Category;
+import java.util.List;
 
 
+public interface CrudRepository<T> {
+
+    public List<T> findAll();
+
+    public T insert(Category category);
+
+    public void delete(Category category);
+
+    public T update();
 
 
-//}
+
+
+}

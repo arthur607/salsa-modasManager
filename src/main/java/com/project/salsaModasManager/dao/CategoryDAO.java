@@ -2,6 +2,7 @@ package com.project.salsaModasManager.dao;
 
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Subcategory;
+import com.project.salsaModasManager.repository.CrudRepository;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import lombok.Builder;
 import lombok.Data;
@@ -9,19 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Builder
-@Data
-public class CategoryDAO /*implements DefaultDAO<CategoryDAO>*/ {
+//@Builder
+//@Data
+//public class CategoryDAO{
 
-    private Long id;
-    private String name;
-    private Subcategory subcategory;
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    public List<Category> list() {
-        return categoryRepository.findAll();
-    }
 
     //    @Override
 //    public CategoryDAO mapper(ResultSet resultSet) throws SQLException {
@@ -31,4 +23,4 @@ public class CategoryDAO /*implements DefaultDAO<CategoryDAO>*/ {
 //                .subcategory(resultSet.getObject(3,Subcategory.class))
 //                .build();
 //    }
-}
+//}
