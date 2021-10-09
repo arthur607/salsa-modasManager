@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public  class CategoryService implements CrudRepository {
@@ -39,9 +40,9 @@ public  class CategoryService implements CrudRepository {
             }
         });
     }
-
     @Override
     public Category insert(Category category) throws Exception {
+        category.setNome(category.getNome().toUpperCase());
         category.teste(category);
         return categoryRepository.save(category);
     }
