@@ -18,15 +18,15 @@ public class Category {
     @Column(nullable = false, length = 25)
     private String nome;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "subcategory")
     private Subcategory subcategory;
 
-    public Boolean teste() {
-        try {
-            return this.nome.equals("VESTIDO") || this.nome.equals("acessorios".toUpperCase());
-        } catch (RuntimeException runtimeException){
-            throw new RuntimeException();
+    public void teste(Category category) throws Exception {
+
+        if (category.getNome().equals("vestido".toUpperCase()) || category.getNome().equals("acessorio".toUpperCase())){
+            category.setNome(nome);
         }
+        else throw new Exception("Categoria invalida ! ");
     }
 }

@@ -8,7 +8,7 @@ public interface CrudRepository<T> {
 
     public List<T> findAll();
 
-    public T insert(Category category);
+    public T insert(Category category) throws Exception;
 
     public void delete(Category category);
 
