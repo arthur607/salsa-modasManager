@@ -41,7 +41,6 @@ public class DefaultController {
     }
 
     @PostMapping("insert/category")
-
     public Category cadastrarCategoria(@RequestBody Category category) throws Exception {
         Category category1 = Category.builder()
                 .nome(category.getNome())

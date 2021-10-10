@@ -22,11 +22,11 @@ public class Category {
     @Column(name = "subcategory")
     private Subcategory subcategory;
 
-    public void teste(Category category) throws Exception {
+    public boolean teste(Category category) throws Exception {
 
         if (category.getNome().equals("vestido".toUpperCase()) || category.getNome().equals("acessorio".toUpperCase())){
-            category.setNome(nome);
+            return true;
         }
-        else throw new Exception("Categoria invalida ! ");
+        else throw new Exception("Categoria invalida !");
     }
 }

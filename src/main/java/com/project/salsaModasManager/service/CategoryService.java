@@ -4,7 +4,6 @@ import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Subcategory;
 import com.project.salsaModasManager.repository.CrudRepository;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
-import org.hibernate.type.SetType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,10 +12,10 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public  class CategoryService implements CrudRepository {
+
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
@@ -55,5 +54,16 @@ public  class CategoryService implements CrudRepository {
     @Override
     public Object update() {
         return null;
+    }
+
+
+    public boolean isValid(Category category) throws Exception {
+        if (category.getNome().equals("VESTIDO") &&
+                category.getSubcategory().getId() == 1
+                || category.getNome().equals("ACESSORIOS")
+                && category.getSubcategory().getId() == 2){
+           return true;
+        }
+        else throw new  Exception("Subcategoria não bate com a categoria !");
     }
 }
