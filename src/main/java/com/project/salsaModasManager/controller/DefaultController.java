@@ -1,5 +1,6 @@
 package com.project.salsaModasManager.controller;
 
+import com.project.salsaModasManager.controller.dto.ProductResponse;
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Produto;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/manager")
@@ -59,13 +61,18 @@ public class DefaultController {
 
 
     @GetMapping("findAllProduct")
-    public List<Produto> findAllProduct(){
-        return produtoRepository.findAll();
+    public List<ProductResponse> findAllProduct(){
+        return produtoRepository.findAll().stream()
+                .map(ProductResponse::converter)
+                .collect(Collectors.toList());
+
     }
 
 
     @PostMapping("insert/product")
-    public Produto cadastrarProduto(@RequestBody Produto produto){
-        return productService.insert(produto);
+    public ProductResponse cadastrarProduto(@RequestBody Produto produto){
+        productService.insert(produto);
+        return ProductResponse.converter(produto);
+
     }
 }

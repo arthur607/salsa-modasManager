@@ -18,7 +18,6 @@ public class ProductService {
         produto.setDataCriacao(LocalDate.now());
         DecimalFormat df = new DecimalFormat("0.##");
         produto.setPrecoCompra(Double.valueOf(df.format(produto.getPrecoCompra()).replace(",",".")));
-
         return produtoRepository.save(produto);
     }
 
