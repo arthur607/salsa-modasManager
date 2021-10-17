@@ -42,7 +42,8 @@ public  class CategoryService implements CrudRepository {
     @Override
     public Category insert(Category category) throws Exception {
         category.setNome(category.getNome().toUpperCase());
-        category.teste(category);
+        category.validCategoryName(category);
+        validSubcategory(category);
         return categoryRepository.save(category);
     }
 
@@ -57,10 +58,10 @@ public  class CategoryService implements CrudRepository {
     }
 
 
-    public boolean isValid(Category category) throws Exception {
+    public boolean validSubcategory(Category category) throws Exception {
         if (category.getNome().equals("VESTIDO") &&
                 category.getSubcategory().getId() == 1
-                || category.getNome().equals("ACESSORIOS")
+                || category.getNome().equals("ACESSORIO")
                 && category.getSubcategory().getId() == 2){
            return true;
         }

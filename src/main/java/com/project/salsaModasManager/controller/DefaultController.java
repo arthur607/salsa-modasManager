@@ -5,15 +5,20 @@ import com.project.salsaModasManager.model.Produto;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import com.project.salsaModasManager.repository.jpaRepositories.ProdutoRepository;
 import com.project.salsaModasManager.service.CategoryService;
+import com.project.salsaModasManager.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/api/v1/manager")
@@ -22,6 +27,8 @@ public class DefaultController {
     private CategoryService categoryService;
     @Autowired
     private ProdutoRepository produtoRepository;
+    @Autowired
+    ProductService productService;
 
     @ApiOperation(value = "Return an example hello")
     @ApiResponses(value = {
@@ -59,6 +66,6 @@ public class DefaultController {
 
     @PostMapping("insert/product")
     public Produto cadastrarProduto(@RequestBody Produto produto){
-        return produtoRepository.save(produto);
+        return productService.insert(produto);
     }
 }

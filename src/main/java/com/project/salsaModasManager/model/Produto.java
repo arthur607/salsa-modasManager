@@ -21,16 +21,12 @@ public class Produto {
     private Long id;
     @Column(nullable = false, length = 25)
     private LocalDate dataCriacao;
-    @Column(nullable = false, length = 30)
+    @Column(nullable = true, length = 30)
     private String descricao;
-    @Column(nullable = false, length = 25)
+    @Column(nullable = true, length = 25)
     private String fornecedor;
     @Column(nullable = false)
-    private Long precoCompra;
+    private Double precoCompra;
     @Column(nullable = false, length = 15)
     private String cor;
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    private Integer estoque;
-
 }

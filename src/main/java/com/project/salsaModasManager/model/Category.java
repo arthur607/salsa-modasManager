@@ -22,7 +22,7 @@ public class Category {
     @Column(name = "subcategory")
     private Subcategory subcategory;
 
-    public boolean teste(Category category) throws Exception {
+    public boolean validCategoryName(Category category) throws Exception {
 
         if (category.getNome().equals("vestido".toUpperCase()) || category.getNome().equals("acessorio".toUpperCase())){
             return true;
