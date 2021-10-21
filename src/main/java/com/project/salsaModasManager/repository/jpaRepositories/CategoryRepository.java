@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Long> {
 
+    List<Category> findByNomeContaining(String nome);
+
 
 }

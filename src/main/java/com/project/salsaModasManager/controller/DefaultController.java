@@ -1,9 +1,9 @@
 package com.project.salsaModasManager.controller;
 
-import com.project.salsaModasManager.controller.dto.ProductResponse;
+import com.project.salsaModasManager.dto.CategoryDto;
+import com.project.salsaModasManager.dto.ProductResponse;
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Produto;
-import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import com.project.salsaModasManager.repository.jpaRepositories.ProdutoRepository;
 import com.project.salsaModasManager.service.CategoryService;
 import com.project.salsaModasManager.service.ProductService;
@@ -11,15 +11,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,15 +30,23 @@ public class DefaultController {
     @Autowired
     ProductService productService;
 
-    @ApiOperation(value = "Return an example hello")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200,message = "success return method")
-    })
-    @GetMapping
-    public List <String> hello(){
-        List<String> ar = new ArrayList<>();
-        ar.add("hello");
-        return ar;
+//    @ApiOperation(value = "Return an example hello")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200,message = "success return method")
+//    })
+//    @GetMapping
+//    public ResponseEntity<List <String>> hello(){
+//        List<String> ar = new ArrayList<>();
+//        ar.add("hello");
+//        return ResponseEntity.ok(ar);
+//    }
+
+    @GetMapping("findAllCategoryNome")
+    public ResponseEntity<List<Category>> findByName(@RequestHeader(required = false) String nome){
+        if (nome == null || nome.equals("")){
+            return ResponseEntity.ok(categoryService.findAll());
+        }
+        return ResponseEntity.ok(categoryService.findByName(nome));
     }
 
 
@@ -50,29 +56,26 @@ public class DefaultController {
     }
 
     @PostMapping("insert/category")
-    public Category cadastrarCategoria(@RequestBody Category category) throws Exception {
-        Category category1 = Category.builder()
-                .nome(category.getNome())
-                .subcategory(category.getSubcategory())
-                .build();
-        return categoryService.insert(category1);
+    public ResponseEntity<Category> cadastrarCategoria(@RequestBody CategoryDto categoryDto) throws Exception {
+
+        return new ResponseEntity<>(categoryService.insert(categoryDto.converterToModel()), HttpStatus.CREATED);
     }
 
 
 
     @GetMapping("findAllProduct")
-    public List<ProductResponse> findAllProduct(){
-        return produtoRepository.findAll().stream()
-                .map(ProductResponse::converter)
-                .collect(Collectors.toList());
-
+    public ResponseEntity<List<ProductResponse>> findAllProduct(){
+        return ResponseEntity.ok(
+                productService.findAll()
+                        .stream()
+                        .map(ProductResponse::converter)
+                        .collect(Collectors.toList()));
     }
 
 
     @PostMapping("insert/product")
-    public ProductResponse cadastrarProduto(@RequestBody Produto produto){
-        productService.insert(produto);
-        return ProductResponse.converter(produto);
+    public ResponseEntity<ProductResponse> cadastrarProduto(@RequestBody Produto produto){
 
+        return new ResponseEntity<>(ProductResponse.converter(productService.insert(produto)),HttpStatus.CREATED);
     }
 }

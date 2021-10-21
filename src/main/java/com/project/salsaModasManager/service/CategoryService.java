@@ -5,6 +5,7 @@ import com.project.salsaModasManager.model.Subcategory;
 import com.project.salsaModasManager.repository.CrudRepository;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public  class CategoryService implements CrudRepository {
     private CategoryRepository categoryRepository;
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private Category category;
 
 
     @Override
@@ -66,5 +70,12 @@ public  class CategoryService implements CrudRepository {
            return true;
         }
         else throw new  Exception("Subcategoria não bate com a categoria !");
+    }
+
+    public List<Category> findByName(String nome){
+        if (nome != category.getNome()){
+            ResponseEntity.notFound().build();
+        }
+        return categoryRepository.findByNomeContaining(nome);
     }
 }
