@@ -2,8 +2,11 @@ package com.project.salsaModasManager.model;
 
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Entity(name = "category")
 @Table(name = "tbl_category")
 @AllArgsConstructor

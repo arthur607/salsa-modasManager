@@ -2,12 +2,13 @@ package com.project.salsaModasManager.dto;
 
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Subcategory;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class CategoryDto implements Converter<Category> {
+public class CategoryDto extends Category implements Converter<Category> {
 
     private String nome;
     private Subcategory subcategory;
@@ -19,5 +20,10 @@ public class CategoryDto implements Converter<Category> {
                 .subcategory(this.subcategory)
                 .build();
         return category;
+    }
+
+    @Override
+    public CategoryDto converterToResponse() {
+        return null;
     }
 }

@@ -4,6 +4,8 @@ public interface Converter<T> {
 
     public T converterToModel();
 
+    public T converterToResponse();
+
 
 
 }

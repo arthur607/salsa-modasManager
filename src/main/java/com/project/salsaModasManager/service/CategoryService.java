@@ -2,31 +2,27 @@ package com.project.salsaModasManager.service;
 
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Subcategory;
-import com.project.salsaModasManager.repository.CrudRepository;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 @Service
-public  class CategoryService implements CrudRepository {
+public  class CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private Category category;
 
-
-    @Override
     public List<Category> findAll() {
 
         final String sql = "select * from tbl_category";
@@ -43,7 +39,7 @@ public  class CategoryService implements CrudRepository {
             }
         });
     }
-    @Override
+    @Transactional
     public Category insert(Category category) throws Exception {
         category.setNome(category.getNome().toUpperCase());
         category.validCategoryName(category);
@@ -51,12 +47,11 @@ public  class CategoryService implements CrudRepository {
         return categoryRepository.save(category);
     }
 
-    @Override
     public void delete(Category category) {
         categoryRepository.delete(category);
     }
 
-    @Override
+
     public Object update() {
         return null;
     }
@@ -73,9 +68,6 @@ public  class CategoryService implements CrudRepository {
     }
 
     public List<Category> findByName(String nome){
-        if (nome != category.getNome()){
-            ResponseEntity.notFound().build();
-        }
         return categoryRepository.findByNomeContaining(nome);
     }
 }

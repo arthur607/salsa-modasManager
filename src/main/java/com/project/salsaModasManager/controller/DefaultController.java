@@ -1,7 +1,6 @@
 package com.project.salsaModasManager.controller;
 
 import com.project.salsaModasManager.dto.CategoryDto;
-import com.project.salsaModasManager.dto.ProductResponse;
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Produto;
 import com.project.salsaModasManager.repository.jpaRepositories.ProdutoRepository;
@@ -15,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,17 +29,6 @@ public class DefaultController {
     private ProdutoRepository produtoRepository;
     @Autowired
     ProductService productService;
-
-//    @ApiOperation(value = "Return an example hello")
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200,message = "success return method")
-//    })
-//    @GetMapping
-//    public ResponseEntity<List <String>> hello(){
-//        List<String> ar = new ArrayList<>();
-//        ar.add("hello");
-//        return ResponseEntity.ok(ar);
-//    }
 
     @GetMapping("findAllCategoryNome")
     public ResponseEntity<List<Category>> findByName(@RequestHeader(required = false) String nome){
@@ -64,18 +53,18 @@ public class DefaultController {
 
 
     @GetMapping("findAllProduct")
-    public ResponseEntity<List<ProductResponse>> findAllProduct(){
+    public ResponseEntity<List<Produto>> findAllProduct(){
         return ResponseEntity.ok(
-                productService.findAll()
-                        .stream()
+                productService.findAll());
+                       /* .stream()
                         .map(ProductResponse::converter)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()));*/
     }
 
 
     @PostMapping("insert/product")
-    public ResponseEntity<ProductResponse> cadastrarProduto(@RequestBody Produto produto){
+    public ResponseEntity<Produto> cadastrarProduto(@Valid @RequestBody Produto produto){
 
-        return new ResponseEntity<>(ProductResponse.converter(productService.insert(produto)),HttpStatus.CREATED);
+        return new ResponseEntity<>((productService.insert(produto)),HttpStatus.CREATED);
     }
 }

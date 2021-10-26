@@ -2,7 +2,6 @@ package com.project.salsaModasManager.dao;
 
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Subcategory;
-import com.project.salsaModasManager.repository.CrudRepository;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import lombok.Builder;
 import lombok.Data;
