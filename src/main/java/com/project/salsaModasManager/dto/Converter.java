@@ -2,9 +2,9 @@ package com.project.salsaModasManager.dto;
 
 public interface Converter<T> {
 
-    public T converterToModel();
+     T converterToModel();
 
-    public T converterToResponse();
+     T converterToResponse();
 
 
 

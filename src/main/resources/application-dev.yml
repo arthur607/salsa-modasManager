@@ -7,7 +7,7 @@ app:
   datasource:
     main:
       drive-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:mem:file:./data/exemplo
+      jdbc-url: jdbc:h2:file:./data/novo
       password: password
       pool-size:
       username: sa

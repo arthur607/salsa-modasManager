@@ -1,16 +1,11 @@
 package com.project.salsaModasManager.service;
 
-import com.project.salsaModasManager.model.Category;
+import com.project.salsaModasManager.dto.ProductDto;
 import com.project.salsaModasManager.model.Produto;
 import com.project.salsaModasManager.repository.jpaRepositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
@@ -21,8 +16,10 @@ public class ProductService {
     @Autowired
     ProdutoRepository produtoRepository;
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+
+   /* @Autowired
+    private JdbcTemplate jdbcTemplate;*/
+
     @Transactional
     public Produto insert(Produto produto){
         produto.setDataCriacao(LocalDate.now());
@@ -34,7 +31,6 @@ public class ProductService {
     public List<Produto> findAll(){
         return produtoRepository.findAll();
     }
-
 
 
 

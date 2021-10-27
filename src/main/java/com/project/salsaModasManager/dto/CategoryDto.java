@@ -8,22 +8,21 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CategoryDto extends Category implements Converter<Category> {
+public class CategoryDto implements Converter<Category> {
 
     private String nome;
     private Subcategory subcategory;
 
     @Override
     public Category converterToModel() {
-        Category category = Category.builder()
+        return Category.builder()
                 .nome(this.nome)
                 .subcategory(this.subcategory)
                 .build();
-        return category;
     }
 
     @Override
-    public CategoryDto converterToResponse() {
+    public Category converterToResponse() {
         return null;
     }
 }

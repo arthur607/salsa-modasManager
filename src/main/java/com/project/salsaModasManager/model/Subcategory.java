@@ -11,8 +11,8 @@ public enum Subcategory {
     PULSEIRA(2, false);
 
 
-    private int id;
-    private boolean vestido;
+    private final int id;
+    private final boolean vestido;
 
     Subcategory(int id, boolean vestido) {
         this.id = id;

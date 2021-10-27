@@ -3,22 +3,19 @@ package com.project.salsaModasManager.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
+
 @Entity
 @Table(name = "tbl_produto")
 @NoArgsConstructor
 @Data
 @Builder
 @AllArgsConstructor
-public class Produto implements Serializable {
-    @EqualsAndHashCode.Include
+public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    //IDENTITY POIS AS KEYS ESTAVAM DUPLICANDO
     private Long id;
@@ -32,7 +29,7 @@ public class Produto implements Serializable {
     @Column(nullable = false)
     @NotNull
     private Double precoCompra;
-    @Column(nullable = false, length = 15)
+    @Column(nullable = true, length = 15)
     private String cor;
     @ManyToOne(cascade = CascadeType.DETACH)               //mais de um produto para uma categoria
     @JoinColumn(name = "fk_category", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
