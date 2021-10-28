@@ -2,16 +2,14 @@ package com.project.salsaModasManager.dto;
 
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Produto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
 public class ProductDto {
 
 
@@ -30,7 +28,9 @@ public class ProductDto {
                 .fornecedor(this.fornecedor)
                 .category(category)
                 .build();
-        category.setId(this.idCategory);
+                category.setId(this.idCategory);
         return produto;
     }
+
+
 }

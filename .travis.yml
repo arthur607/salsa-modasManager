@@ -1,8 +1,8 @@
 dist: xenial
 language: java
 sudo: false
-jdk: openjdk8
-install: false
+jdk: openjdk1.8
+install: true
 cache:
   directories:
     - $HOME/.m2

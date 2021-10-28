@@ -52,7 +52,9 @@ public class DefaultController {
 
 
     @PostMapping("insert/product")
-    public ResponseEntity<Produto> cadastrarProduto(@Valid @RequestBody ProductDto produto){
-        return new ResponseEntity<>((productService.insert(produto.converterToModel())),HttpStatus.CREATED);
+    public ResponseEntity<ProductDto> cadastrarProduto(@Valid @RequestBody ProductDto produtoRequest){
+        new Produto();
+        Produto produto = productService.insert(produtoRequest.converterToModel());
+        return new ResponseEntity<>((produto.converterToResponse()),HttpStatus.CREATED);
     }
 }

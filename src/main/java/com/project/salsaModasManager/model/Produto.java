@@ -1,5 +1,6 @@
 package com.project.salsaModasManager.model;
 
+import com.project.salsaModasManager.dto.ProductDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,4 +35,15 @@ public class Produto {
     @ManyToOne(cascade = CascadeType.DETACH)               //mais de um produto para uma categoria
     @JoinColumn(name = "fk_category", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
     private Category category;
+
+    public ProductDto converterToResponse(){
+        ProductDto productDto = ProductDto.builder()
+                .descricao(this.descricao)
+                .fornecedor(this.fornecedor)
+                .cor(this.cor)
+                .idCategory(this.category.getId())
+                .precoCompra(this.precoCompra)
+                .build();
+        return productDto;
+    }
 }
