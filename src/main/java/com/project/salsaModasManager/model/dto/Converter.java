@@ -1,4 +1,4 @@
-package com.project.salsaModasManager.dto;
+package com.project.salsaModasManager.model.dto;
 
 public interface Converter<T> {
 

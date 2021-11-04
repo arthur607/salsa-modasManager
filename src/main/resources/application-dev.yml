@@ -2,7 +2,7 @@ loggin:
   level:
     com:
       project: DEBUG
-
+# Propriedades do Banco de dados em ambiente de Desenv
 app:
   datasource:
     main:
@@ -11,6 +11,7 @@ app:
       password: password
       pool-size:
       username: sa
+# Configurações do Spring JPA
 spring:
   jpa:
     database-plataform: org.hibernate.dialect.H2Dialect

@@ -5,6 +5,8 @@ import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity(name = "category")
@@ -25,11 +27,5 @@ public class Category {
     @Column(name = "subcategory")
     private Subcategory subcategory;
 
-    public boolean validCategoryName(Category category) throws Exception {
 
-        if (category.getNome().equals("vestido".toUpperCase()) || category.getNome().equals("acessorio".toUpperCase())){
-            return true;
-        }
-        else throw new Exception("Categoria invalida !");
-    }
 }

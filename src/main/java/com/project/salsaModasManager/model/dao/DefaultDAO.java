@@ -1,4 +1,4 @@
-package com.project.salsaModasManager.dao;
+package com.project.salsaModasManager.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

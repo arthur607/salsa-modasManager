@@ -1,21 +1,22 @@
-package com.project.salsaModasManager.dto;
+package com.project.salsaModasManager.model.dto.Request;
 
 import com.project.salsaModasManager.model.Category;
 import com.project.salsaModasManager.model.Produto;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@Builder
-public class ProductDto {
-
+public class ProductRequest {
 
     private String descricao;
     private String fornecedor;
-    private Double precoCompra;
+    @NotNull
+    private BigDecimal precoCompra;
     private String cor;
     private Long idCategory;
 
@@ -32,5 +33,7 @@ public class ProductDto {
         return produto;
     }
 
+    public ProductRequest() {
+    }
 
 }
