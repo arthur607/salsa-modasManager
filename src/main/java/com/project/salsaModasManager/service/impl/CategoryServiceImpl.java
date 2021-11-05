@@ -7,7 +7,6 @@ import com.project.salsaModasManager.model.dto.CategoryDto;
 import com.project.salsaModasManager.model.mapper.CategoryMapper;
 import com.project.salsaModasManager.repository.jpaRepositories.CategoryRepository;
 import com.project.salsaModasManager.service.CategoryService;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
