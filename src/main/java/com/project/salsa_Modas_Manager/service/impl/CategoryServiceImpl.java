@@ -1,5 +1,6 @@
 package com.project.salsa_Modas_Manager.service.impl;
 
+import com.project.salsa_Modas_Manager.Exception.AuthorNotFoundException;
 import com.project.salsa_Modas_Manager.Exception.NotFoundException;
 import com.project.salsa_Modas_Manager.model.Category;
 import com.project.salsa_Modas_Manager.model.Subcategory;
@@ -15,7 +16,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -67,17 +67,18 @@ public class CategoryServiceImpl implements CategoryService {
 
     public void validSubcategory(int id, String nome) {
 
-        try {
-            if (nome.equalsIgnoreCase("VESTIDO") &&
-                    id == 1
-                    || nome.equalsIgnoreCase("ACESSORIO")
-                    && id == 2) {
-                log.info("Subcategoria {} é válida", nome);
-            }
-        } catch (ParameterMappingException e) {
-            log.error("nome da subcategoria {} é inválida ou não bate com a categoria inserida !", nome);
-            throw new ParameterMappingException(e.getParameter(), e.getValue(), e.getCause());
+            try {
+                if (categoryRepository.categoryNames().contains(nome) &&
+                        id == 1
+                        || id == 2 ) {
+                    log.info("Subcategoria {} é válida", nome);
+                }
+            } catch (ParameterMappingException e) {
+                log.error("nome da subcategoria {} é inválida ou não bate com a categoria inserida !", nome);
+                throw new ParameterMappingException(e.getParameter(), e.getValue(), e.getCause());
+
         }
+
 
     }
 
@@ -91,7 +92,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Category getById(Long categoryId) {
         Optional<Category> category = categoryRepository.findById(categoryId);
 
-        return category.orElseThrow(() -> new NotFoundException("Id " + categoryId + " não encontrado !"));
+        return category.orElseThrow(() -> new AuthorNotFoundException(categoryId));
     }
 
     @Override

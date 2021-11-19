@@ -1,6 +1,6 @@
 package com.project.salsa_Modas_Manager.model;
 
-import com.project.salsa_Modas_Manager.model.dto.Response.ProductResponse;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +12,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tbl_produto")
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class Produto {
@@ -34,14 +35,4 @@ public class Produto {
     @JoinColumn(name = "fk_category", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
     private Category category;
 
-    public ProductResponse converterToResponse(){
-        ProductResponse productResponse = ProductResponse.builder()
-                .descricao(this.descricao)
-                .fornecedor(this.fornecedor)
-                .cor(this.cor)
-                .idCategory(this.category.getId())
-                .precoCompra(this.precoCompra)
-                .build();
-        return productResponse;
-    }
 }
