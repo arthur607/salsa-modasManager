@@ -26,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProdutoRepository produtoRepository;
 
+    @Autowired
     ProductConverter productConverter;
 
 
@@ -47,15 +48,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
     public ProductResponse create(ProductRequest productRequest) {
         Produto produto = productConverter.toModel(productRequest);
         produto.setCategory(Category.builder().id(productRequest.getIdCategory()).build());
         produto.setDataCriacao(LocalDate.now());
-        DecimalFormat df = new DecimalFormat("0.##");
-        produto.setPrecoCompra(BigDecimal.valueOf
-                (Long.parseLong(df.format
-                        (productRequest.getPrecoCompra()).replace(",", "."))));
         return productConverter.toDTO(produtoRepository.save(produto));
     }
 

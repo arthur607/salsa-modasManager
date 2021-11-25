@@ -6,9 +6,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.project.salsa_Modas_Manager.Exception.NotFoundException;
+import com.project.salsa_Modas_Manager.enums.CategoryName;
 import com.project.salsa_Modas_Manager.model.Category;
 import com.project.salsa_Modas_Manager.model.Produto;
-import com.project.salsa_Modas_Manager.model.Subcategory;
+import com.project.salsa_Modas_Manager.enums.Subcategory;
 import com.project.salsa_Modas_Manager.model.dto.Request.ProductRequest;
 import com.project.salsa_Modas_Manager.repository.jpaRepositories.ProdutoRepository;
 
@@ -36,7 +37,7 @@ class ProductServiceImplTest {
     void testUpdate() {
         Category category = new Category();
         category.setSubcategory(Subcategory.MARJORIE);
-        category.setNome("Nome");
+        category.setNome(CategoryName.VESTIDO);
         category.setId(123L);
 
         Produto produto = new Produto();

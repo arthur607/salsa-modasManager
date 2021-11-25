@@ -1,8 +1,8 @@
 package com.project.salsa_Modas_Manager.model;
 
-
+import com.project.salsa_Modas_Manager.enums.CategoryName;
+import com.project.salsa_Modas_Manager.enums.Subcategory;
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity(name = "category")
@@ -16,11 +16,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 25)
-    private String nome;
+    private CategoryName nome;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "subcategory")
+    @Column(nullable = false, name = "subcategory", length = 25)
     private Subcategory subcategory;
 
 

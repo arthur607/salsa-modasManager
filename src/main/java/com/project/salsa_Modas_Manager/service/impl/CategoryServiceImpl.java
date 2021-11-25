@@ -1,23 +1,18 @@
 package com.project.salsa_Modas_Manager.service.impl;
 
-import com.project.salsa_Modas_Manager.Exception.AuthorNotFoundException;
+import com.project.salsa_Modas_Manager.Exception.CategoryNotFoundException;
 import com.project.salsa_Modas_Manager.Exception.NotFoundException;
 import com.project.salsa_Modas_Manager.model.Category;
-import com.project.salsa_Modas_Manager.model.Subcategory;
 import com.project.salsa_Modas_Manager.model.dto.CategoryDto;
 import com.project.salsa_Modas_Manager.repository.jpaRepositories.CategoryRepository;
 import com.project.salsa_Modas_Manager.service.CategoryService;
 import com.project.salsa_Modas_Manager.utils.CategoryConverter;
-import com.project.salsa_Modas_Manager.utils.CategoryConverterImp;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.invoke.ParameterMappingException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -30,43 +25,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    private CategoryConverter categoryConverter = new CategoryConverterImp();
-
-    public void validCategoryName(String nome) {
-        try {
-            if (nome.equalsIgnoreCase("VESTIDO") || nome.equalsIgnoreCase("ACESSORIO")) {
-                log.info("Nome da categoria {} é valido ", nome);
-            }
-
-        } catch (ParameterMappingException e) {
-            log.error("nome da categoria {} é invalida", nome);
-            throw new ParameterMappingException(e.getParameter(), e.getValue(), e.getCause());
-        }
-    }
+    private CategoryConverter categoryConverter;
 
 
     public List<Category> findAll() {
 
-        final String sql = "select * from tbl_category";
-
-        return jdbcTemplate.query(sql, new RowMapper<Category>() {
-
-            @Override
-            public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return Category.builder()
-                        .nome(rs.getString(2))
-                        .id(rs.getLong(1))
-                        .subcategory(Subcategory.valueOf(rs.getString(3)))
-                        .build();
-            }
-        });
+       return categoryRepository.findAllCategory();
     }
 
     public void validSubcategory(int id, String nome) {
-
             try {
                 if (categoryRepository.categoryNames().contains(nome) &&
                         id == 1
@@ -78,10 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
                 throw new ParameterMappingException(e.getParameter(), e.getValue(), e.getCause());
 
         }
-
-
     }
-
 
     public List<Category> findByName(String nome) {
         return categoryRepository.findByNomeContaining(nome);
@@ -92,17 +58,25 @@ public class CategoryServiceImpl implements CategoryService {
     public Category getById(Long categoryId) {
         Optional<Category> category = categoryRepository.findById(categoryId);
 
-        return category.orElseThrow(() -> new AuthorNotFoundException(categoryId));
+        return category.orElseThrow(() -> new CategoryNotFoundException(categoryId));
     }
 
     @Override
-    @Transactional
     public Category create(CategoryDto categoryDto) {
-        categoryDto.setNome(categoryDto.getNome().toUpperCase());
-        validCategoryName(categoryDto.getNome());
-        validSubcategory(categoryDto.getSubcategory().getId(), categoryDto.getNome());
+        validCategory(categoryDto);
         Category category = categoryConverter.toModel(categoryDto);
         return categoryRepository.save(category);
+    }
+
+
+    private void validCategory(CategoryDto categoryDto) {
+        try {
+            if (categoryDto.getNome().getId() != categoryDto.getSubcategory().getId())
+                throw new IllegalAccessException("Categoria e subcategoria não batem");
+            else log.info("Nome e subcategoria válidos");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

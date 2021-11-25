@@ -33,7 +33,7 @@ public class ProductController {
 
     @PostMapping("insert/product")
     @ApiOperation(value = "Insert new Product")
-    public ResponseEntity<ProductResponse> cadastrarProduto(@Valid @RequestBody ProductRequest produtoRequest) throws Exception {
+    public ResponseEntity<ProductResponse> cadastrarProduto(@Valid @RequestBody ProductRequest produtoRequest) {
 
         return new ResponseEntity<>(productService.create(produtoRequest), HttpStatus.CREATED);
     }

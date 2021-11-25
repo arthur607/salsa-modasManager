@@ -1,6 +1,5 @@
 package com.project.salsa_Modas_Manager.controller;
 
-import com.project.salsa_Modas_Manager.Exception.NotFoundException;
 import com.project.salsa_Modas_Manager.model.Category;
 import com.project.salsa_Modas_Manager.model.dto.CategoryDto;
 import com.project.salsa_Modas_Manager.service.CategoryService;
@@ -10,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/v1/manager")
@@ -47,7 +45,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("category/{id}")
-    public void deleteById(@PathVariable Long id) {
+    public void deleteById(@PathVariable(name = "id") Long id) {
 
         categoryService.deleteById(id);
         log.info("{} deletado com sucesso", id);

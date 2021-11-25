@@ -10,10 +10,12 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends CrudRepository<Category,Long> {
 
+    @Query(value = "select * from tbl_category;",nativeQuery = true)
+    List<Category> findAllCategory();
+
     List<Category> findByNomeContaining(String nome);
 
     @Query(value = "select nome from tbl_category;", nativeQuery = true)
     List<String> categoryNames();
-
 
 }

@@ -1,9 +1,8 @@
 package com.project.salsa_Modas_Manager.model.dto;
 
-import com.project.salsa_Modas_Manager.model.Subcategory;
+import com.project.salsa_Modas_Manager.enums.CategoryName;
+import com.project.salsa_Modas_Manager.enums.Subcategory;
 import lombok.*;
-
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,11 +14,8 @@ import javax.validation.constraints.Size;
 @Builder
 public class CategoryDto {
 
-    @Size(max = 25)
-    @NotEmpty
     @NotNull
-    private String nome;
+    private CategoryName nome;
     @NotNull
     private Subcategory subcategory;
-
 }

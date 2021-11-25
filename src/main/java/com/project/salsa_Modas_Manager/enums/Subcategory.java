@@ -1,4 +1,4 @@
-package com.project.salsa_Modas_Manager.model;
+package com.project.salsa_Modas_Manager.enums;
 
 import lombok.Getter;
 
@@ -8,7 +8,8 @@ public enum Subcategory {
 
     MARJORIE(1, true),
     COLAR(2, false),
-    PULSEIRA(2, false);
+    PULSEIRA(2, false),
+    GERAL(3,false);
 
 
     private final int id;

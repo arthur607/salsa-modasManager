@@ -3,7 +3,9 @@ package com.project.salsa_Modas_Manager.utils;
 import com.project.salsa_Modas_Manager.model.Produto;
 import com.project.salsa_Modas_Manager.model.dto.Request.ProductRequest;
 import com.project.salsa_Modas_Manager.model.dto.Response.ProductResponse;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductConverterImp implements ProductConverter {
 
     @Override

@@ -1,5 +1,6 @@
 package com.project.salsa_Modas_Manager.model;
 
+import com.project.salsa_Modas_Manager.enums.Subcategory;
 import lombok.Builder;
 
 @Builder
