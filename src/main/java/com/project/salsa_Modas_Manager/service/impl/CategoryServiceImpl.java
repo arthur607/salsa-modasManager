@@ -7,7 +7,6 @@ import com.project.salsa_Modas_Manager.model.dto.CategoryDto;
 import com.project.salsa_Modas_Manager.repository.jpaRepositories.CategoryRepository;
 import com.project.salsa_Modas_Manager.service.CategoryService;
 import com.project.salsa_Modas_Manager.utils.CategoryConverter;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.invoke.ParameterMappingException;
@@ -75,7 +74,7 @@ public class CategoryServiceImpl implements CategoryService {
                 throw new IllegalAccessException("Categoria e subcategoria não batem");
             else log.info("Nome e subcategoria válidos");
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+           e.printStackTrace();
         }
     }
 

@@ -15,10 +15,7 @@ app:
 spring:
   jpa:
     database-plataform: org.hibernate.dialect.H2Dialect
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
-  h2:
-    console:
-      enabled: true
