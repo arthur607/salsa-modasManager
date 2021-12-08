@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse getById(Long productId) {
         Produto produto = produtoRepository.findById(productId)
-                .orElseThrow(() -> new NotFoundException(("Id não encontrado !")));
+                .orElseThrow(() -> new NotFoundException((String.format("Id não encontrado => %d", productId))));
         return productConverter.toDTO(produto);
     }
 
@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse update(Long id, ProductRequest productRequest) {
         produtoRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(("Id não encontrado !")));
+                .orElseThrow(() -> new NotFoundException((String.format("Id não encontrado => %d", id))));
         return productConverter.toDTO(
                 produtoRepository.save(
                         Produto.builder()
