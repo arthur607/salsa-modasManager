@@ -50,4 +50,9 @@ public class CategoryController {
         categoryService.deleteById(id);
         log.info("{} deletado com sucesso", id);
     }
+
+    @PutMapping("category/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id,@Valid @RequestBody CategoryDto categoryDto){
+        return ResponseEntity.ok().body(categoryService.update(id,categoryDto));
+    }
 }

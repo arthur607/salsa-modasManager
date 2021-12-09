@@ -30,22 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     public List<Category> findAll() {
-
        return categoryRepository.findAllCategory();
-    }
-
-    public void validSubcategory(int id, String nome) {
-            try {
-                if (categoryRepository.categoryNames().contains(nome) &&
-                        id == 1
-                        || id == 2 ) {
-                    log.info("Subcategoria {} é válida", nome);
-                }
-            } catch (ParameterMappingException e) {
-                log.error("nome da subcategoria {} é inválida ou não bate com a categoria inserida !", nome);
-                throw new ParameterMappingException(e.getParameter(), e.getValue(), e.getCause());
-
-        }
     }
 
     public List<Category> findByName(String nome) {
@@ -80,6 +65,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category update(Long id, CategoryDto categoryDto) {
+        validCategory(categoryDto);
         categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Id não encontrado !"));
 
         return categoryRepository.save(
