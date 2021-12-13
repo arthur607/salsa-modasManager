@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">    </head>
+<body>
+<div class="container">
+    <div class="jumbotron mb-0">
+        <h1 class="display-4">Novo Pedido</h1>
+    </div>
+    <form action="/api/v1/manager/insert/product/save" method="POST">
+        <div>
+            <label for="descricao">Descrição</label>
+            <textarea name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador."></textarea>
+        </div>
+        <div>
+            <label for="fornecedor">fornecedor</label>
+            <input name="fornecedor" placeholder="fornecedor do produto"/>
+            <small>fornecedor...</small>
+        </div>
+        <div>
+            <label for="precoCompra">precoCompra</label>
+            <input type="number" name="precoCompra" placeholder="precoCompra"/>
+            <small>precoCompra...</small>
+        </div>
+        <div>
+            <label for="descricao">Descrição</label>
+            <textarea name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador."></textarea>
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>

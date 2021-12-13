@@ -12,7 +12,7 @@
 <div class="container">
 
     <div class="jumbotron mb-0">
-        <h1 class="display-4">Meus Pedidos</h1>
+        <h1 class="display-4">Produtos Salsa Modas</h1>
     </div>
 
     <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
@@ -22,22 +22,23 @@
             <a class="nav-item nav-link" href="">Aprovado</a>
             <a class="nav-item nav-link" href="">Entregue</a>
         </div>
-        <a href="/pedido/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
+        <a href="/product/form"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
     </nav>
-<div>
-    <div >Nome do Produto</div>
-    <div >Valor: <span th:text="${pr.precoCompra}">200,99</span></div>
-    <div>Data da entrega <span>10/02/2021</span></div>
-
-    <div>Produto</div>
-    <div><input class="form-control">Url do produto</div>
-
+<div class="col-12 col-sm4">
+    <div >Cor <span></span></div>
     <div>Descrição</div>
     <div>
         <textarea name="Descrição do pedido" id="" cols="30" rows="10">Descrição</textarea>
     </div>
+    <div >Fornecedor <span></span></div>
+    <div >Valor: <span th:text="${pr.precoCompra}">200,99</span></div>
+    <div>Data da entrega <span>10/02/2021</span></div>
+    <div >ID da Categoria <span></span></div>
 
-    <div><img src="" alt=""></div>
+    <div>Produto</div>
+    <div><input class="form-control">Url do produto</div>
+
+    
 </div>
 </div>
 
