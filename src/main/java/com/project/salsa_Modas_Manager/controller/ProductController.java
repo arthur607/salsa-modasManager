@@ -5,8 +5,9 @@ import com.project.salsa_Modas_Manager.model.dto.Request.ProductRequest;
 import com.project.salsa_Modas_Manager.model.dto.Response.ProductResponse;
 import com.project.salsa_Modas_Manager.service.ProductService;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Log4j2
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/manager")
 public class ProductController {
@@ -28,6 +29,11 @@ public class ProductController {
     public ResponseEntity<List<Produto>> findAllProduct() {
         log.info("Sucessfully find all products");
         return ResponseEntity.ok().body(productService.findAll());
+    }
+    @GetMapping("findAllProduct/page")
+    public Page<Produto> produtoPage(@RequestParam int pg,@RequestParam int qtd) {
+
+        return productService.produtoPage(pg,qtd);
     }
 
 

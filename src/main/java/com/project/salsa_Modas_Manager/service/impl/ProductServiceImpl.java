@@ -9,6 +9,9 @@ import com.project.salsa_Modas_Manager.repository.jpaRepositories.ProdutoReposit
 import com.project.salsa_Modas_Manager.service.ProductService;
 import com.project.salsa_Modas_Manager.utils.ProductConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,9 +38,18 @@ public class ProductServiceImpl implements ProductService {
         return null;
     }
 
+    @Override
     public List<Produto> findAll() {
         return Optional.of(produtoRepository.findAll())
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public Page<Produto> produtoPage(int pg, int qtd) {
+
+        Pageable paginacao = PageRequest.of(pg, qtd);
+
+       return produtoRepository.findAll(paginacao);
     }
 
     @Override

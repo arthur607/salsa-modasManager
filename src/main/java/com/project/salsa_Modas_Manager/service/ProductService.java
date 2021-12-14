@@ -4,6 +4,7 @@ package com.project.salsa_Modas_Manager.service;
 import com.project.salsa_Modas_Manager.model.Produto;
 import com.project.salsa_Modas_Manager.model.dto.Request.ProductRequest;
 import com.project.salsa_Modas_Manager.model.dto.Response.ProductResponse;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface ProductService {
     ProductResponse create(ProductRequest productRequest);
     ProductResponse update(Long id, ProductRequest productRequest);
     void deleteById(Long id);
+    Page<Produto> produtoPage(int pg, int qtd);
 
 
 }
