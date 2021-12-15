@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +33,9 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.findAll());
     }
     @GetMapping("findAllProduct/page")
-    public Page<Produto> produtoPage(@RequestParam int pg,@RequestParam int qtd) {
+    public Page<Produto> produtoPage(Pageable pageable) {
 
-        return productService.produtoPage(pg,qtd);
+        return productService.produtoPage(pageable);
     }
 
 
