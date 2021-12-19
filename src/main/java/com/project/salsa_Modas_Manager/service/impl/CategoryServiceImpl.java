@@ -9,9 +9,10 @@ import com.project.salsa_Modas_Manager.service.CategoryService;
 import com.project.salsa_Modas_Manager.utils.CategoryConverter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.invoke.ParameterMappingException;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @CacheEvict(value = "findall", allEntries = true)
     public Category create(CategoryDto categoryDto) {
         validCategory(categoryDto);
         Category category = categoryConverter.toModel(categoryDto);
@@ -57,10 +59,10 @@ public class CategoryServiceImpl implements CategoryService {
     private void validCategory(CategoryDto categoryDto) {
         try {
             if (categoryDto.getNome().getId() != categoryDto.getSubcategory().getId())
-                throw new IllegalAccessException("Categoria e subcategoria não batem");
+                throw new RuntimeException("Categoria e subcategoria não batem");
             else log.info("Nome e subcategoria válidos");
-        } catch (IllegalAccessException e) {
-           e.printStackTrace();
+        } catch (RuntimeException e) {
+          throw new RuntimeException(e);
         }
     }
 
