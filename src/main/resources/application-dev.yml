@@ -13,12 +13,18 @@ app:
       username: sa
 # Configurações do Spring JPA
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     database-plataform: org.hibernate.dialect.H2Dialect
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+  cache:
+    type: redis
+    host: localhost
+    port: 6379
   h2:
     console:
       enabled: true

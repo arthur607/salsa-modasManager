@@ -4,6 +4,7 @@ import com.project.salsa_Modas_Manager.enums.CategoryName;
 import com.project.salsa_Modas_Manager.enums.Subcategory;
 import lombok.*;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity(name = "category")
 @Table(name = "tbl_category")
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Builder
-public class Category {
+public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -30,7 +31,9 @@ import java.time.LocalDate;
 @Setter
 @Builder
 @AllArgsConstructor
-public class Produto {
+public class Produto implements Serializable {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    //IDENTITY POIS AS KEYS ESTAVAM DUPLICANDO
     private Long id;

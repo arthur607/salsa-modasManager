@@ -10,6 +10,7 @@ import com.project.salsa_Modas_Manager.utils.CategoryConverter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.invoke.ParameterMappingException;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryConverter categoryConverter;
 
-
+    @Cacheable(cacheNames = "findall", key = "#root.method.name")
     public List<Category> findAll() {
        return categoryRepository.findAllCategory();
     }
