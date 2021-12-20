@@ -67,6 +67,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @CacheEvict(value = "findall", allEntries = true)
     public Category update(Long id, CategoryDto categoryDto) {
         validCategory(categoryDto);
         categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Id não encontrado !"));
@@ -81,6 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @CacheEvict(value = "findall", allEntries = true)
     public void deleteById(Long id) {
         categoryRepository.deleteById(id);
     }

@@ -51,11 +51,9 @@ class CategoryServiceImplTest {
     @Test
     void findAll() {
         //when
-        Category categoryBefore = new Category();
-        categoryRepository.save(categoryBefore);
-        final Category category = categoryServiceImpl.create(categoryConverter.toDTO(categoryBefore));
-        //then
-        assertThat(category).isNotNull();
+        categoryServiceImpl.findAll();
+
+        verify(categoryRepository).findAllCategory();
 
     }
 
