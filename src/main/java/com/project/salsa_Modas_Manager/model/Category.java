@@ -21,7 +21,7 @@ public class Category implements Serializable {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false, length = 25, name = "nome")
     private CategoryName nome;
 
     @Enumerated(EnumType.STRING)

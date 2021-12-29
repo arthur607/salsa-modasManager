@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ public class CategoryController {
 
     @GetMapping("findAllCategory")
     @ApiOperation(value = "Find all Category, with Category name")
-    public ResponseEntity<List<Category>> findByName(@RequestHeader(required = false) String nome) {
+    public ResponseEntity<LinkedList<Category>> findByName(@RequestHeader(required = false,name = "nome") String nome) {
         if (nome == null || nome.isEmpty()) {
             return ResponseEntity.ok(categoryService.findAll());
         }

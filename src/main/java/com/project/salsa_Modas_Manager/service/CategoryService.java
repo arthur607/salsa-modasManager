@@ -3,11 +3,11 @@ package com.project.salsa_Modas_Manager.service;
 import com.project.salsa_Modas_Manager.model.Category;
 import com.project.salsa_Modas_Manager.model.dto.CategoryDto;
 
-import java.util.List;
+import java.util.LinkedList;
 
 public interface CategoryService {
-    List<Category> findByName(String nome);
-    List<Category> findAll();
+    LinkedList<Category> findByName(String nome);
+    LinkedList<Category> findAll();
     Category getById(Long categoryId);
     Category create(CategoryDto categoryDto);
     Category update(Long id, CategoryDto categoryDto);
