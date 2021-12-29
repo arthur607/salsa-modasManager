@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryConverter categoryConverter;
 
-    @Cacheable(cacheNames = "findall", key = "#root.method.name")
+    //@Cacheable(cacheNames = "findall", key = "#root.method.name")
     public List<Category> findAll() {
        return categoryRepository.findAllCategory();
     }
@@ -47,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @CacheEvict(value = "findall", allEntries = true)
+    //@CacheEvict(value = "findall", allEntries = true)
     public Category create(CategoryDto categoryDto) {
         validCategory(categoryDto);
         Category category = categoryConverter.toModel(categoryDto);
@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @CacheEvict(value = "findall", allEntries = true)
+    //@CacheEvict(value = "findall", allEntries = true)
     public Category update(Long id, CategoryDto categoryDto) {
         validCategory(categoryDto);
         categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Id não encontrado !"));
@@ -81,7 +81,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @CacheEvict(value = "findall", allEntries = true)
+   // @CacheEvict(value = "findall", allEntries = true)
     public void deleteById(Long id) {
         categoryRepository.deleteById(id);
     }

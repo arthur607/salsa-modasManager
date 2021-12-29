@@ -13,6 +13,9 @@ import java.io.Serializable;
 @Data
 @Builder
 public class Category implements Serializable {
+
+    private static final long serialVersionUID = 388837054515009974L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
