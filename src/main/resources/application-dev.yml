@@ -8,9 +8,13 @@ app:
     main:
       drive-class-name: org.h2.Driver
       jdbc-url: jdbc:h2:file:./data/novo
-      password: password
-      pool-size:
-      username: sa
+      password: src/main/resources/database/secret-db-username
+      username: src/main/resources/database/secret-db-username
+      pool-name: ManagerPool
+      min-pool-size: 1
+      max-pool-size: 3
+      max-lifetime: 1800000
+      validation-timeout: 250
 # Configurações do Spring JPA
 spring:
   main:
